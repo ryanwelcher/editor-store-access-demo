@@ -4,6 +4,10 @@ A tiny WordPress plugin that shows the difference between **reading the block
 editor data store imperatively** through the `wp.data` global and
 **subscribing to it correctly** from inside the editor's React tree.
 
+**▶ [Try it in WordPress Playground](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/ryanwelcher/editor-store-access-demo/trunk/blueprint.json)** — opens a
+throwaway WordPress in your browser with the plugin active, straight into a new
+post. Nothing to install; add a few blocks and watch the notice at the top.
+
 ## The point
 
 It is *not* about being unable to access the store — the `wp.data` global reads
@@ -66,16 +70,36 @@ a shared Playground link, where switching to an IDE would break the flow.
   hydration race) and via a hand-rolled `subscribe()`. Its `subscribe()` line
   logs in the same shape as the panel's live row, so console and panel tick
   together — proof they read one and the same store.
+- `blueprint.json` — the Playground recipe behind the link above. It installs
+  `editor-store-access-demo.zip` from this repo and lands on a new post.
+- `editor-store-access-demo.zip` — the built plugin, **committed on purpose**:
+  it's what the Playground link downloads. `build/` is gitignored, so this zip
+  is the only copy of the compiled JS in the repo.
+
+**After changing anything in `src/` or `assets/`, run `npm run plugin-zip` and
+commit the refreshed zip** — it builds first, then repacks. Skip it and the
+Playground link keeps serving the old code while the source here looks current.
 
 ## Run it
+
+The fastest way to see it is the [Playground link](#editor-store-access-demo)
+above — no checkout, no build.
+
+To hack on it locally, use [`wp-env`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/)
+(Docker required — start Docker Desktop first):
 
 ```bash
 npm install
 npm run build          # or: npm start (watch)
-npm run playground     # spins up WordPress Playground with this plugin mounted
+npm run env            # boots WordPress at http://localhost:8888 with this plugin active
 ```
 
-Then open a post and read the notice at the top. Suggested live sequence:
+Log in at `http://localhost:8888/wp-admin` with `admin` / `password`, then open a
+new post. `npm run env:stop` shuts it down. The `.wp-env.json` here mounts the
+plugin directory directly, so a rebuild is picked up on reload — pair
+`npm start` with `wp-env` and you get a live edit loop.
+
+Read the notice at the top of the editor. Suggested live sequence:
 
 1. Reload — row **A** shows `0` (read before hydration); the ✅ column shows the
    real count.

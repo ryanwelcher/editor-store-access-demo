@@ -17,6 +17,13 @@
 			}
 		},
 		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "url",
+				"url": "https://raw.githubusercontent.com/ryanwelcher/editor-store-access-demo/trunk/editor-store-access-demo.zip"
+			}
+		},
+		{
 			"step": "activatePlugin",
 			"pluginPath": "editor-store-access-demo/editor-store-access-demo.php"
 		}
