@@ -6,12 +6,12 @@ editor data store imperatively** through the `wp.data` global and
 
 **▶ [Try it in WordPress Playground](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/ryanwelcher/editor-store-access-demo/trunk/blueprint.json)** — opens a
 throwaway WordPress in your browser with the plugin active, straight into a draft
-that already holds three paragraphs. Nothing to install; add or delete a block
-and watch the notice at the top.
+that walks you through the demo. Nothing to install; add or delete a block and
+watch the notice at the top.
 
 The draft is seeded on purpose: on an empty post every row would read `0`, and
 row **A**'s "read before hydration" bug would look identical to the correct
-answer. Starting at three blocks makes the stale rows visibly wrong.
+answer. Starting at six blocks makes the stale rows visibly wrong.
 
 ## The point
 
