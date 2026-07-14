@@ -1,0 +1,20 @@
+{
+	"name": "editor-store-access-demo",
+	"version": "0.1.0",
+	"description": "Demonstrates reading the WordPress block editor data store imperatively via the wp.data global (snapshot / hydration / staleness) versus subscribing correctly from inside the editor's React tree.",
+	"author": "Ryan Welcher",
+	"license": "GPL-2.0-or-later",
+	"private": true,
+	"main": "build/store-consumer.js",
+	"scripts": {
+		"build": "wp-scripts build src/store-consumer.js --output-path=build",
+		"start": "wp-scripts start src/store-consumer.js --output-path=build",
+		"env": "wp-env start",
+		"env:stop": "wp-env stop",
+		"playground": "npx @wp-playground/cli@latest server --mount=.:/wordpress/wp-content/plugins/editor-store-access-demo --blueprint=blueprint.json"
+	},
+	"devDependencies": {
+		"@wordpress/env": "^10.0.0",
+		"@wordpress/scripts": "^30.0.0"
+	}
+}

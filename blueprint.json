@@ -1,0 +1,24 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/wp-admin/post-new.php",
+	"preferredVersions": {
+		"php": "8.2",
+		"wp": "latest"
+	},
+	"features": {
+		"networking": true
+	},
+	"login": true,
+	"steps": [
+		{
+			"step": "setSiteOptions",
+			"options": {
+				"blogname": "Editor Store Access Demo"
+			}
+		},
+		{
+			"step": "activatePlugin",
+			"pluginPath": "editor-store-access-demo/editor-store-access-demo.php"
+		}
+	]
+}
