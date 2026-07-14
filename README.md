@@ -5,8 +5,13 @@ editor data store imperatively** through the `wp.data` global and
 **subscribing to it correctly** from inside the editor's React tree.
 
 **▶ [Try it in WordPress Playground](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/ryanwelcher/editor-store-access-demo/trunk/blueprint.json)** — opens a
-throwaway WordPress in your browser with the plugin active, straight into a new
-post. Nothing to install; add a few blocks and watch the notice at the top.
+throwaway WordPress in your browser with the plugin active, straight into a draft
+that already holds three paragraphs. Nothing to install; add or delete a block
+and watch the notice at the top.
+
+The draft is seeded on purpose: on an empty post every row would read `0`, and
+row **A**'s "read before hydration" bug would look identical to the correct
+answer. Starting at three blocks makes the stale rows visibly wrong.
 
 ## The point
 
@@ -95,9 +100,12 @@ npm run env            # boots WordPress at http://localhost:8888 with this plug
 ```
 
 Log in at `http://localhost:8888/wp-admin` with `admin` / `password`, then open a
-new post. `npm run env:stop` shuts it down. The `.wp-env.json` here mounts the
+post. `npm run env:stop` shuts it down. The `.wp-env.json` here mounts the
 plugin directory directly, so a rebuild is picked up on reload — pair
 `npm start` with `wp-env` and you get a live edit loop.
+
+Unlike the Playground link, wp-env doesn't seed a draft — add a few blocks and
+save before reloading, or every row will read `0` and row **A** won't look wrong.
 
 Read the notice at the top of the editor. Suggested live sequence:
 
